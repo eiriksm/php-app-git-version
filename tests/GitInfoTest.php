@@ -1,11 +1,10 @@
 <?php
 
 use eiriksm\GitInfo\GitInfo;
-use PHPUnit\Framework\TestCase;
 
 const BOGUS_COMMAND = 'inTheDepthsOfHell';
 
-class GitInfoTest extends TestCase {
+class GitInfoTest extends \PHPUnit_Framework_TestCase {
 
   public function testHash() {
     $i = new GitInfo();
