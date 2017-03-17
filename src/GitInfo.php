@@ -59,7 +59,7 @@ class GitInfo implements GitInfoInterface {
    * @return string|bool
    *   The output string, or FALSE if things went badly.
    */
-  private function execAndTrim($command) {
+  protected function execAndTrim($command) {
     try {
       $result = Command::exec($this->gitCommand . ' ' . $command, []);
     }
