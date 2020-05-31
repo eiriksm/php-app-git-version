@@ -2,7 +2,7 @@
 
 namespace eiriksm\GitInfo;
 
-use pastuhov\Command\Command;
+use Symfony\Component\Process\Process;
 
 /**
  * Class GitInfo.
@@ -61,7 +61,13 @@ class GitInfo implements GitInfoInterface {
    */
   protected function execAndTrim($command) {
     try {
-      $result = Command::exec($this->gitCommand . ' ' . $command, []);
+      $command = sprintf('%s %s', $this->gitCommand, $command);
+      $process = new Process($command);
+      $exit_code = $process->run();
+      if ($exit_code) {
+        throw new \Exception('Process exited with exit code ' . $exit_code);
+      }
+      $result = $process->getOutput();
     }
     catch (\Exception $e) {
       $result = FALSE;

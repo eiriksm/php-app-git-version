@@ -1,10 +1,13 @@
 <?php
 
+namespace eiriksm\GitInfo\Tests;
+
 use eiriksm\GitInfo\GitInfo;
+use PHPUnit\Framework\TestCase;
 
-const BOGUS_COMMAND = 'inTheDepthsOfHell';
+class GitInfoTest extends TestCase {
 
-class GitInfoTest extends \PHPUnit_Framework_TestCase {
+  const BOGUS_COMMAND = 'inTheDepthsOfHell';
 
   public function testHash() {
     $i = new GitInfo();
@@ -52,6 +55,6 @@ class GitInfoTest extends \PHPUnit_Framework_TestCase {
   }
 
   private function getBadGit() {
-    return new GitInfo(BOGUS_COMMAND);
+    return new GitInfo(self::BOGUS_COMMAND);
   }
 }

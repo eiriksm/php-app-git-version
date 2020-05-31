@@ -2,11 +2,11 @@
     "name": "eiriksm/gitinfo",
     "description": "Get some git info about your application",
     "require-dev": {
-        "phpunit/phpunit": "~5.7.21",
+        "phpunit/phpunit": "~6",
         "satooshi/php-coveralls": "^1.0"
     },
     "require": {
-        "pastuhov/php-exec-command": "^1.1"
+        "symfony/process": "^2|^3|^4"
     },
     "autoload": {
         "psr-4": {"eiriksm\\GitInfo\\": "src"}
