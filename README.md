@@ -1,4 +1,4 @@
-# app-git-version
+# eiriksm/gitinfo
 
 [![Packagist](https://img.shields.io/packagist/v/eiriksm/gitinfo.svg?maxAge=3600)](https://packagist.org/packages/eiriksm/gitinfo)
 [![Packagist](https://img.shields.io/packagist/dt/eiriksm/gitinfo.svg?maxAge=3600)](https://packagist.org/packages/eiriksm/gitinfo)
