@@ -65,7 +65,7 @@ class GitInfo implements GitInfoInterface {
       $process = new Process($command);
       $exit_code = $process->run();
       if ($exit_code) {
-        return FALSE;
+        throw new \Exception('Process exited with exit code ' . $exit_code);
       }
       $result = $process->getOutput();
     }
