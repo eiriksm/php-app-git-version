@@ -16,9 +16,9 @@ jobs:
           - "7.3"
           - "7.4"
         process-version:
-          - "2"
           - "3"
           - "4"
+          - "5"
     steps:
       - name: Dump matrix context
         env:
