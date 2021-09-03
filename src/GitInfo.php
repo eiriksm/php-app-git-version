@@ -27,14 +27,14 @@ class GitInfo implements GitInfoInterface {
    * {@inheritdoc}
    */
   public function getShortHash() {
-    return $this->execAndTrim('log --pretty="%h" -n1 HEAD');
+    return $this->execAndTrim(['log', '--pretty="%h"', '-n1', 'HEAD']);
   }
 
   /**
    * {@inheritdoc}
    */
   public function getVersion() {
-    $tag = $this->execAndTrim('describe --tags');
+    $tag = $this->execAndTrim(['describe', '--tags']);
     return !empty($tag) ? $tag : 'dev';
   }
 
@@ -42,7 +42,7 @@ class GitInfo implements GitInfoInterface {
    * {@inheritdoc}
    */
   public function getDate() {
-    if (!$date = $this->execAndTrim('log -n1 --pretty=%ci HEAD')) {
+    if (!$date = $this->execAndTrim(['log', '-n1', '--pretty=%ci', 'HEAD'])) {
       return FALSE;
     }
     $commit_date = new \DateTime($date);
@@ -59,10 +59,10 @@ class GitInfo implements GitInfoInterface {
    * @return string|bool
    *   The output string, or FALSE if things went badly.
    */
-  protected function execAndTrim($command) {
+  protected function execAndTrim(array $commands) {
     try {
-      $command = sprintf('%s %s', $this->gitCommand, $command);
-      $process = new Process($command);
+      $process_command = array_merge([$this->gitCommand], $commands);
+      $process = new Process($process_command);
       $exit_code = $process->run();
       if ($exit_code) {
         throw new \Exception('Process exited with exit code ' . $exit_code);
