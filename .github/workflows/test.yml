@@ -1,0 +1,49 @@
+name: Test
+on:
+  - push
+  - pull_request
+
+jobs:
+  test:
+    name: Run tests
+    runs-on: 'ubuntu-20.04'
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version:
+          - "7.1"
+          - "7.2"
+          - "7.3"
+          - "7.4"
+        process-version:
+          - "2"
+          - "3"
+          - "4"
+    steps:
+      - name: Dump matrix context
+        env:
+          MATRIX_CONTEXT: ${{ toJSON(matrix) }}
+        run: echo "$MATRIX_CONTEXT"
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+
+      - name: Update composer
+        run: composer --verbose self-update
+
+      - name: Dump composer verson
+        run: composer --version
+
+      - name: Validate composer.json
+        run: composer --verbose validate
+
+      - name: Install dependencies
+        run: "composer require symfony/process:^${{ matrix.process-version }}"
+
+      - name: Run tests
+        run: composer test
