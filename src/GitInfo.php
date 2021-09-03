@@ -62,7 +62,7 @@ class GitInfo implements GitInfoInterface {
   protected function execAndTrim($command) {
     try {
       $process_command = [$this->gitCommand, $command];
-      $process = new Process($$process_command);
+      $process = new Process($process_command);
       $exit_code = $process->run();
       if ($exit_code) {
         throw new \Exception('Process exited with exit code ' . $exit_code);
