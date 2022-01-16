@@ -27,6 +27,7 @@ class GitInfo implements GitInfoInterface {
    * {@inheritdoc}
    */
   public function getShortHash() {
+    return $this->execAndTrim('log --pretty="%h" -n1 HEAD');
     return $this->execAndTrim(['log', '--pretty="%h"', '-n1', 'HEAD']);
   }
 
