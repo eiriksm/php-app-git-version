@@ -27,7 +27,7 @@ class GitInfo implements GitInfoInterface {
    * {@inheritdoc}
    */
   public function getShortHash() {
-    return $this->execAndTrim(['log --pretty="%h" -n1 HEAD']);
+    return $this->execAndTrim2('log --pretty="%h" -n1 HEAD');
     return $this->execAndTrim(['log', '--pretty="%h"', '-n1', 'HEAD']);
   }
 
@@ -68,6 +68,23 @@ class GitInfo implements GitInfoInterface {
       if ($exit_code) {
         throw new \Exception('Process exited with exit code ' . $exit_code);
       }
+      $result = trim($process->getOutput());
+    }
+    catch (\Exception $e) {
+      $result = FALSE;
+    }
+    return $result;
+  }
+
+  protected function execAndTrim2($command) {
+    try {
+      $command = sprintf('%s %s', $this->gitCommand, $command);
+      $process = new Process($command);
+      $exit_code = $process->run();
+      if ($exit_code) {
+        throw new \Exception('Process exited with exit code ' . $exit_code);
+      }
+      $result = $process->getOutput();
       $result = trim($process->getOutput());
     }
     catch (\Exception $e) {
