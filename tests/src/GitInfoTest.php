@@ -13,6 +13,7 @@ class GitInfoTest extends TestCase {
     $i = new GitInfo();
     $hash = $i->getShortHash();
     $this->assertNotFalse($hash);
+    self::assertEquals($hash, getenv('GITHUB_SHA_SHORT'));
   }
 
   public function testNoHash() {
