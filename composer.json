@@ -3,7 +3,7 @@
     "description": "Get some git info about your application",
     "license": "MIT",
     "require-dev": {
-        "phpunit/phpunit": "~6",
+        "phpunit/phpunit": "~6 || ^7 || ^8 || ^9",
         "satooshi/php-coveralls": "^1.0"
     },
     "require": {
