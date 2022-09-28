@@ -39,17 +39,40 @@ class GitInfo implements GitInfoInterface {
   }
 
   /**
-   * {@inheritdoc}
+   * Fetches the date from
    */
-  public function getDate() {
+  protected function getGitDate() {
     if (!$date = $this->execAndTrim(['log', '-n1', '--pretty=%ci', 'HEAD'])) {
-      return FALSE;
+      return NULL;
     }
     $commit_date = new \DateTime($date);
     $commit_date->setTimezone(new \DateTimeZone('UTC'));
-    return $commit_date->format('Y-m-d H:m:s');
+    return $commit_date
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function getDate() {
+    @trigger_error('GitInfoInterface::getDate() is deprecated in eiriksm/gitinfo:4.1.0 and is removed from eiriksm/gitinfo:5.0.0. Use ::getIsoDate() or ::getCustomDate().', E_USER_DEPRECATED);
+    return $this->getCustomDate('Y-m-d H:m:s');
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function geIsotDate() {
+    return $this->getGitDate()->format('c');
+  }
+
+  
+  /**
+   * {@inheritdoc}
+   */
+  public function getCustomDate(string $format) {
+    return $this->getGitDate()->format($format);
+  }
+  
   /**
    * Helper to make sure we trim the output.
    *
