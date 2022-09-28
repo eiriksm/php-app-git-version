@@ -34,7 +34,7 @@ interface GitInfoInterface {
    * Gets the date of the latest commit.
    * 
    * @deprecated in eiriksm/gitinfo:4.1.0 and is removed from eiriksm/gitinfo:5.0.0.
-   *   Use ::getIsoDate() or ::getCustomDate().
+   *   Use ::getRfc3339Date() or ::getCustomDate().
    *
    * @return string|false
    *   A date string, or FALSE if there was a problem.

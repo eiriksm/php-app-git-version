@@ -54,7 +54,7 @@ class GitInfo implements GitInfoInterface {
    * {@inheritdoc}
    */
   public function getDate() {
-    @trigger_error('GitInfoInterface::getDate() is deprecated in eiriksm/gitinfo:4.1.0 and is removed from eiriksm/gitinfo:5.0.0. Use ::getIsoDate() or ::getCustomDate().', E_USER_DEPRECATED);
+    @trigger_error('GitInfoInterface::getDate() is deprecated in eiriksm/gitinfo:4.1.0 and is removed from eiriksm/gitinfo:5.0.0. Use ::getRfc3339Date() or ::getCustomDate().', E_USER_DEPRECATED);
     return $this->getCustomDate('Y-m-d H:m:s');
   }
 
