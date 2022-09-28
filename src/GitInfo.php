@@ -61,16 +61,16 @@ class GitInfo implements GitInfoInterface {
   /**
    * {@inheritdoc}
    */
-  public function geIsotDate() {
-    return $this->getGitDate()->format('c');
+  public function getRfc3339Date() {
+    return $this->getCustomDate(\DateTimeInterface::RFC3339_EXTENDED);
   }
 
-  
   /**
    * {@inheritdoc}
    */
   public function getCustomDate(string $format) {
-    return $this->getGitDate()->format($format);
+    $date = $this->getGitDate();
+    return $date ? $date->format($format) : NULL;
   }
   
   /**
