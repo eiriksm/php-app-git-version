@@ -39,7 +39,10 @@ class GitInfo implements GitInfoInterface {
   }
 
   /**
-   * Fetches the date from
+   * Fetches the date from the git log.
+   * 
+   * @return \DateTime|null
+   *   Time object in UTC or null if the date could not be fetched.
    */
   protected function getGitDate() {
     if (!$date = $this->execAndTrim(['log', '-n1', '--pretty=%ci', 'HEAD'])) {
