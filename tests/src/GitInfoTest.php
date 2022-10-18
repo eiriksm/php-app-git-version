@@ -38,6 +38,16 @@ class GitInfoTest extends TestCase {
     $this->assertNotFalse($i->getDate());
   }
 
+  public function testCustomDate() {
+    $i = new GitInfo();
+    $this->assertNotNull($i->getCustomDate('U'));
+  }
+
+  public function testRfcDate() {
+    $i = new GitInfo();
+    $this->assertNotNull($i->getRfc3339Date('U'));
+  }
+
   public function testBadDate() {
     $i = $this->getBadGit();
     $this->assertFalse($i->getDate());
