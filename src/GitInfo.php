@@ -50,7 +50,7 @@ class GitInfo implements GitInfoInterface {
     }
     $commit_date = new \DateTime($date);
     $commit_date->setTimezone(new \DateTimeZone('UTC'));
-    return $commit_date
+    return $commit_date;
   }
 
   /**
