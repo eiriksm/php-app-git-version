@@ -105,7 +105,7 @@ class GitInfo implements GitInfoInterface {
    * {@inheritdoc}
    */
   public function getApplicationVersionString() {
-    $date = $this->getDate();
+    $date = $this->getCustomDate('Y-m-d H:m:s');
     $date_string = '';
     if ($date) {
       $date_string = " ($date)";
