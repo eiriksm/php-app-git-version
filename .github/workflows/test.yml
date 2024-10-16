@@ -31,8 +31,16 @@ jobs:
           - php-version: 7.3
             process-version: 6
           - php-version: 7.4
-            process-version: 7
+            process-version: 6
           - php-version: 7.2
+            process-version: 7
+          - php-version: 7.3
+            process-version: 7
+          - php-version: 7.4
+            process-version: 7
+          - php-version: 8.0
+            process-version: 7
+          - php-version: 8.1
             process-version: 7
     steps:
       - name: Dump matrix context
