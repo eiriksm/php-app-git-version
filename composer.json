@@ -7,7 +7,7 @@
         "php-coveralls/php-coveralls": "^2.1"
     },
     "require": {
-        "symfony/process": "^3 || ^4 || ^5 || ^6"
+        "symfony/process": "^3 || ^4 || ^5 || ^6 || ^7"
     },
     "autoload": {
         "psr-4": {"eiriksm\\GitInfo\\": "src"}
